@@ -33,4 +33,14 @@ function HomePage() {
 
 export default HomePage;
 
-
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery<PokemonsShape>("pokemons", () =>
+    fetchPokemonList(0, 16)
+  );
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient)
+    }
+  };
+}
