@@ -1,7 +1,10 @@
 import React from "react";
 import type { AppProps } from "next/app";
+
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+
+import "../styles/global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // Small hack: This ensures that data is not shared between different users and requests
