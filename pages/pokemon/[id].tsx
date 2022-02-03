@@ -15,7 +15,6 @@ export default function Pokemon() {
   const id = typeof router.query?.id === "string" ? router.query.id : "";
 
   const {
-    isSuccess,
     data: pokemon,
     isLoading,
     isError
@@ -23,7 +22,12 @@ export default function Pokemon() {
     enabled: id.length > 0
   });
 
+  // return a loading component when awaiting data
+  // Create a loader component
   if (isLoading) return "Loading...";
+
+  // return a error message component when awaiting data
+  // Create an error component
   if (isError) return "An error occured";
 
   return <PokemonDetail pokemon={pokemon} />;
