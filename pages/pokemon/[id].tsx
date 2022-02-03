@@ -24,6 +24,7 @@ export default function Pokemon() {
   });
 
   if (isLoading) return "Loading...";
+  if (isError) return "An error occured";
 
   return <PokemonDetail pokemon={pokemon} />;
 }

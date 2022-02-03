@@ -1,8 +1,9 @@
 import React from "react";
-import type { GetStaticProps, GetStaticPaths } from "next";
+import type { GetStaticProps } from "next";
 import type { PokemonsShape } from "../types";
 import { useQuery, QueryClient, dehydrate } from "react-query";
 import { PokemonList } from "../components/PokemonList";
+import { Pagination } from "../components/Pagination";
 
 const fetchPokemonList = async (offset: number, limit: number) =>
   await fetch(
@@ -15,14 +16,25 @@ function HomePage() {
 
   const {
     isLoading,
-    error,
+    isError,
     data: pokemons,
     isFetching
-  } = useQuery<PokemonsShape>("pokemons", () =>
+  } = useQuery<PokemonsShape>(["pokemons", offset], () =>
     fetchPokemonList(offset, limit)
   );
 
   if (isLoading) return "Loading...";
+
+  const nextPage = () => {
+    setOffset((offset) => offset + limit);
+  };
+
+  const prevPage = () => {
+    setOffset((offset) => offset - limit);
+  };
+
+  if (isLoading) return "Loading...";
+  if (isError) return "An error occured";
 
   return (
     <>
@@ -30,14 +42,21 @@ function HomePage() {
         <PokemonList list={pokemons?.results} />
       </div>
 
-
+      <Pagination
+        goNext={nextPage}
+        goBack={prevPage}
+        next={pokemons.next}
+        prev={pokemons.previous}
+        count={pokemons.count}
+        limit={limit}
+      />
     </>
   );
 }
 
 export default HomePage;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery<PokemonsShape>("pokemons", () =>
     fetchPokemonList(0, 16)
@@ -47,4 +66,4 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient)
     }
   };
-}
+};

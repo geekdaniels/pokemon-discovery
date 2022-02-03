@@ -1,6 +1,6 @@
 export type PokemonsShape = {
   count: number;
-  next: string;
+  next: null | string;
   previous: null | string;
   results: Pokemon[];
 };
