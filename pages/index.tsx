@@ -1,6 +1,6 @@
 import React from "react";
 import type { GetStaticProps, GetStaticPaths } from "next";
-import type { PokemonsShape } from "../TYPES";
+import type { PokemonsShape } from "../types";
 import { useQuery, QueryClient, dehydrate } from "react-query";
 import { PokemonList } from "../components/PokemonList";
 
@@ -26,7 +26,11 @@ function HomePage() {
 
   return (
     <>
-      <PokemonList list={pokemons?.results} />
+      <div className="max-w-3xl mx-auto my-4">
+        <PokemonList list={pokemons?.results} />
+      </div>
+
+
     </>
   );
 }

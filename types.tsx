@@ -20,6 +20,7 @@ export interface Pokedex {
   stats: Stat[];
   types: Type[];
   weight: number;
+  height: number;
 }
 
 export interface Ability {

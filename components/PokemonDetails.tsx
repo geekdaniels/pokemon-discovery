@@ -31,9 +31,9 @@ export const PokemonDetail = ({ pokemon }: { pokemon: Pokedex }) => {
         <div className="border-t border-gray-200">
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Name</dt>
+              <dt className="text-sm font-medium text-gray-500">Height</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 capitalize">
-                {pokemon?.name}
+                {pokemon?.height}
               </dd>
             </div>
 
@@ -49,7 +49,7 @@ export const PokemonDetail = ({ pokemon }: { pokemon: Pokedex }) => {
             </div>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Moves</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 capitalize">
                 {pokemon?.moves.map((move, index) => (
                   <span key={index} className="items-center">
                     {move?.move?.name},{" "}
@@ -60,7 +60,7 @@ export const PokemonDetail = ({ pokemon }: { pokemon: Pokedex }) => {
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Types</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 capitalize">
                   {pokemon?.types.map((type, index) => (
                     <span key={index} className="items-center">
                       {type?.type?.name},{" "}
