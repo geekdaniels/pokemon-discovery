@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { PokemonDetail } from "../../components/PokemonDetails";
-import { Pokedex } from "../types";
+import { Pokedex } from "../../types";
 
 const fetchPokemonDetail = async (id: string) =>
   await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
